@@ -1,0 +1,21 @@
+<% if (items.length) { %>
+    <% if (isFirst == true) { %> 
+        <ul id="menu-structure" class="serialization">
+    <% } else { %>
+        <ul>
+    <% } %>
+<% } %>
+    <% items.forEach(function(item){ %>
+    <li class="mt-1" data-id="<%= item.id %>" data-name="<%= item.name %>" data-url="<%= item.url %>">
+        <div class="btn btn-primary w-100"><%= item.name %><a class="my-delete-badge badge badge-danger float-right">Delete</a></div>
+        
+        <% if (item.children[0].length) { %>
+            <%- include("./menustree", {items: item.children[0] , isFirst: false}); %>
+        <% } else { %>
+            <ul></ul>
+        <% } %>
+    </li>
+    <% }) %>
+<% if (items.length) { %>
+</ul>
+<% } %>

@@ -1,0 +1,50 @@
+<script>
+    // quill editor
+    let quill = createQuillEditor("quill-content", imageHandler);
+
+    function imageHandler() {
+        let imageModal = new bootstrap.Modal(document.getElementById("modal-get-image"), { backdrop: "static", keyboard: false });
+        imageModal.show();
+    }
+
+    $('#modal-get-image').on('shown.bs.modal', async function () {
+        $('#my-modal-body').empty();
+        const results = await fetchJSON('/admin/files/ajax-list-image');
+        results.forEach((item, index) => {
+            $('#my-modal-body').append(`
+            <div class="col-md-6 mb-2"><img data-path="${item.path}" src="/${item.path}" class="card-img-top responsive-img" alt="..."></div>
+            `)
+        });
+    });
+
+    $(document).on('dblclick', '#my-modal-body div img', function () {
+        imagePath = $(this).data('path');
+        const url = "/" + imagePath;
+        const range = quill.getSelection();
+        if (url) {
+            quill.insertEmbed(range.index, 'image', url, Quill.sources.USER);
+        }
+        $('#modal-get-image').modal('hide');
+    });
+
+    $("#form-article").on("submit", function () {
+        $("#txa-content").val(document.querySelector('#quill-content').children[0].innerHTML);
+    });
+
+    $("#finput-thumbnail").change(function () {
+        if (this.files && this.files[0]) {
+            let fileReader = new FileReader();
+            fileReader.addEventListener("load", function (e) {
+                $("#img-thumbnail").attr("src", e.target.result);
+                $("#hidden-thumbnail-base64").val(e.target.result);
+            });
+            fileReader.readAsDataURL(this.files[0]);
+        }
+    });
+
+
+    // tags input
+    registerOnEnterTags("tx-tags", "txa-div-tags");
+    registerOnClickAtTags("txa-div-tags");
+
+</script>

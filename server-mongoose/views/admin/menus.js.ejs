@@ -1,0 +1,112 @@
+<script>
+    // menu designer
+    let data;
+    let group = $("ul.serialization").sortable({
+        group: "serialization",
+        delay: 1,
+        nested: false,
+        onDrop: function ($item, container, _super) {
+            _super($item, container);
+        }
+    });
+
+    $("#btn-add-menu-item").click(function () {
+        let id = Math.random().toString();
+        let title = $("#tx-title").val();
+        let url = $("#tx-url").val();
+        if (!id || !title || !url) {
+            alert("Invalid input!");
+            return;
+        }
+
+        if ($("#menu-structure").length && group) {
+            $("#menu-structure").append(`<li class="mt-1" data-id="${id}" data-name="${title}" data-url="${url}"><div class="btn btn-primary w-100">${title}<a class="my-delete-badge badge badge-danger float-right">Delete</a></div><ul></ul></li>`);
+        } else {
+            $("#menu-builder").append(`<ul id="menu-structure" class="serialization"></ul>`);
+            group = $("ul.serialization").sortable({
+                group: "serialization",
+                delay: 1,
+                onDrop: function ($item, container, _super) {
+                    _super($item, container);
+                }
+            });
+            $("#menu-structure").append(`<li class="mt-1" data-id="${id}" data-name="${title}" data-url="${url}"><div class="btn btn-primary w-100">${title}<a class="my-delete-badge badge badge-danger float-right">Delete</a></div><ul></ul></li>`);
+        }
+    });
+
+    $("#btn-save-menu-structure").click(function () {
+        if (!group || !$("#menu-structure").length) {
+            alert("Invalid structure!");
+            return;
+        }
+
+        data = group.sortable("serialize").get();
+        console.log(data)
+
+        $.ajax("/admin/menus/add", {
+            data: JSON.stringify(data),
+            contentType: "application/json",
+            type: "POST",
+        });
+    });
+
+    $("#btn-clear-menu-structure").click(function () {
+        $("#menu-builder").empty();
+        $.ajax("/admin/menus/delete", {
+            data: undefined,
+            contentType: "application/json",
+            type: "GET",
+        });
+    });
+
+    $(document).on("click", ".my-delete-badge", function () {
+        // let name = $(this).closest("li").data("name")
+        // alert(name);
+        $(this).closest("li").remove();
+    });
+
+    // URL picker
+
+    // home
+    $("#btn-pick-home").click(function () {
+        $("#tx-url").val("/");
+    });
+
+    // slug
+    $("#btn-pick-slug").click(function () {
+        let slugModal = new bootstrap.Modal(document.getElementById("modal-get-slug"), { backdrop: "static", keyboard: false });
+        slugModal.show();
+    });
+
+    $('#modal-get-slug').on('shown.bs.modal', async function () {
+        $('#slug-modal-body-col-ul').empty();
+        const results = await fetchJSON('/admin/menus/ajax-list-article');
+        results.forEach((item, index) => {
+            $('#slug-modal-body-col-ul').append(`<li class="list-group-item" data-slug="${item.slug}">${item.title}</li> `)
+        });
+    });
+
+    $(document).on('dblclick', '#slug-modal-body-col-ul li', function () {
+        $("#tx-url").val("/" + $(this).data('slug'));
+        $('#modal-get-slug').modal('hide');
+    });
+
+    // tag
+    $("#btn-pick-tag").click(function () {
+        let tagModal = new bootstrap.Modal(document.getElementById("modal-get-tag"), { backdrop: "static", keyboard: false });
+        tagModal.show();
+    });
+
+    $('#modal-get-tag').on('shown.bs.modal', async function () {
+        $('#tag-modal-body-col').empty();
+        const results = await fetchJSON('/admin/menus/ajax-list-unique-tag');
+        results.forEach((item, index) => {
+            $('#tag-modal-body-col').append(`<span class="badge bg-${randomizeTagsColor()}">${item}</span> `)
+        });
+    });
+
+    $(document).on('dblclick', '#tag-modal-body-col span', function () {
+        $("#tx-url").val("/tags/" + $(this).text());
+        $('#modal-get-tag').modal('hide');
+    });
+</script>

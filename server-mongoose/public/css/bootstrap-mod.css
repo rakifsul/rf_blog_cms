@@ -1,0 +1,139 @@
+/* 1 */
+
+body {
+    margin-top: 0px;
+    margin-bottom: 100px;
+}
+
+.space-15 {
+    margin-top: 15px;
+}
+
+.space-30 {
+    margin-top: 30px;
+}
+
+.ql-toolbar {
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+#quill-content {
+    margin-left: 2px;
+    margin-right: 2px;
+    min-height: 500px;
+}
+
+.sidebar {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    transition: 0.5s;
+}
+
+.sidebar-brand {
+    /* padding: 32px 32px 32px 32px; */
+    margin-top: 5px;
+}
+
+.sidebar-brand-img {
+    border-radius: 100%;
+}
+
+.main {
+    margin-left: 250px;
+}
+
+.sidebar-ul {
+    padding-left: 0px;
+}
+
+.sidebar-li {
+    padding: 8px 8px 8px 8px;
+    text-decoration: none;
+    display: block;
+    transition: 0.3s;
+}
+
+@media only screen and (max-width: 450px) {
+    .btn-mobile {
+        padding-left: 25%;
+    }
+
+    .sidebar {
+        width: 50px !important;
+    }
+
+    .sidebar-li a span {
+        display: none;
+    }
+
+    .sidebar-brand h1 {
+        display: none;
+    }
+
+    .main {
+        margin-left: 50px;
+    }
+}
+
+
+/* 2 */
+.badge:hover {
+    cursor: pointer;
+}
+
+a.badge {
+    text-decoration: none;
+}
+
+.content img {
+    max-width: 100%;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-inline .form-control {
+    display: inline-block;
+    width: auto;
+    vertical-align: middle;
+}
+
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -5px;
+    margin-left: -5px;
+}
+
+.form-row>.col {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+label {
+    margin-bottom: 0.5rem;
+}
+
+.jumbotron {
+    margin-bottom: 2rem;
+    padding: 2rem 1rem;
+    border-radius: 0.3rem;
+    background-color: #e9ecef;
+}
+
+.jumbotron-lower {
+    margin-top: 80px !important;
+}
+
+@media (min-width: 576px) {
+    .jumbotron {
+        padding: 4rem 2rem;
+    }
+}

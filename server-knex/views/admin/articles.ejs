@@ -1,0 +1,71 @@
+<div class="row mt-2">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <h3>Article List</h3>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <a class="btn btn-dark float-end" href="/admin/articles/add" role="button">New Article</a>
+        <div class="form-inline my-2 my-lg-0">
+            <input id="query" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="q" value="<%= data.query %>">
+            <button id="btn-search" onclick="search();" class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
+        </div>
+        <div class="table-responsive mt-2">
+            <table class="table table-hover">
+                <tr>
+                    <th>IDX</th>
+                    <th>Title</th>
+                    <th>Content</th>
+                    <th>Author</th>
+                    <th>Actions</th>
+                </tr>
+                <% let index=data.pagination.page * data.pagination.perPage; data.results.forEach(function(result){ %>
+                    <tr>
+                        <td>
+                            <%= ++index %>
+                        </td>
+                        <td>
+                            <%= result.title %>
+                        </td>
+                        <td>
+                            <%- generateExcerpt(result.content); %>
+                        </td>
+                        <td>
+                            <%= result.name %>
+                        </td>
+                        <td>
+                            <a href="/admin/articles/edit/<%= result._id %>" class="badge text-bg-secondary">Edit</a>
+                            <a href="/admin/articles/delete/<%= result._id %>" class="badge text-bg-danger">Delete</a>
+                        </td>
+                    </tr>
+                <% }); %>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <nav aria-label="...">
+            <% let prevPGN=pgnPrevious(data.pagination.page); let nextPGN=pgnNext(data.pagination.page, data.pagination.pageCount); %>
+            <ul class="pagination">
+                <li class="page-item <% if (prevPGN.disabled) { %>disabled<% } %>">
+                    <a class="page-link" href="/admin/articles/<%= prevPGN.index %><%= data.query ? " ?q=" + data.query : "" %>" tabindex="-1" aria-disabled="true">Previous</a>
+                </li>
+
+                <% for(let i=0; i < data.pagination.pageCount; ++ i){ %>
+                    <li class="page-item <% if(data.pagination.page == i){ %> active <% } %>">
+                        <a class="page-link" href="/admin/articles/<%= i %><%= data.query ? " ?q=" + data.query : "" %>">
+                            <%= i %>
+                        </a>
+                    </li>
+                <% } %>
+
+                <li class="page-item <% if (nextPGN.disabled) { %>disabled<% } %>">
+                    <a class="page-link" href="/admin/articles/<%= nextPGN.index %><%= data.query ? " ?q=" + data.query : "" %>">Next</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>

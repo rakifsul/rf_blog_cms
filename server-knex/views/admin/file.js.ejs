@@ -1,0 +1,10 @@
+<script>
+    $("#btn-upload-file").click(function () {
+        let addModal = new bootstrap.Modal(document.getElementById("modal-add"), { backdrop: 'static', keyboard: false });
+        addModal.show();
+    });
+
+    // tags input
+    registerOnEnterTags("tx-tags", "txa-div-tags");
+    registerOnClickAtTags("txa-div-tags");
+</script>

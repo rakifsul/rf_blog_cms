@@ -1,0 +1,106 @@
+<div class="row mt-2">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <h3>Menu List</h3>
+        <hr>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-6">
+        <h4>Menu Item</h4>
+        <!-- <div class="form-group">
+            <label for="tx-id" class="col-md-4 col-form-label"><span class="text-danger">*</span>ID</label>
+            <div class="col-md-12">
+                <input type="text" name="id" value="" class="form-control" id="tx-id" />
+            </div>
+        </div> -->
+
+        <div class="form-group">
+            <label for="tx-title" class="col-md-4 col-form-label"><span class="text-danger">*</span>Title</label>
+            <div class="col-md-12">
+                <input type="text" name="title" value="" class="form-control" id="tx-title" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="tx-url" class="col-md-4 col-form-label"><span class="text-danger">*</span>URL</label>
+            <div class="col-md-12">
+                <!-- <input type="text" name="url" value="" class="form-control" id="tx-url" /> -->
+                <div class="input-group">
+                    <input type="text" name="url" value="" class="form-control" id="tx-url" />
+                    <div class="input-group-append" style="margin-left: 5px !important;">
+                        <button id="btn-pick-home" class="btn btn-outline-secondary" type="button">Home</button>
+                        <button id="btn-pick-slug" class="btn btn-outline-secondary" type="button">Slug</button>
+                        <button id="btn-pick-tag" class="btn btn-outline-secondary" type="button">Tag</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <button id="btn-add-menu-item" class="btn btn-dark w-100">Add Item to Structure</button>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <h4>Menu Structure</h4>
+        <div id="menu-builder">
+            <% if (data.results) { %>
+                <% if (data.results.structure) { %>
+                    <% if (data.results.structure.length) { %>
+                        <%- include("./menustree", {items: data.results.structure[0] , isFirst: true}); %>
+                    <% } %>
+                <% } %>
+            <% } %>
+        </div>
+        <div class="form-group">
+            <button id="btn-save-menu-structure" class="btn btn-dark w-100">Save Menu Structure</button>
+        </div>
+        <div class="form-group">
+            <button id="btn-clear-menu-structure" class="btn btn-dark w-100">Clear Menu Structure</button>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal-get-slug" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="overflow-y: initial !important;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">DblClick to Select Slug</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="height: 40vh;overflow-y: auto;">
+                <div id="slug-modal-body" class="row">
+                    <div id="slug-modal-body-col" class="col-md-12">
+                        <ul id="slug-modal-body-col-ul" class="list-group">
+                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal-get-tag" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">DblClick to Select Tag</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="tag-modal-body" class="row">
+                    <div id="tag-modal-body-col" class="col-md-12">
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

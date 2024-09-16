@@ -1,0 +1,96 @@
+<div class="row mt-2">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <h3>Settings</h3>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="">Account Settings</h3>
+            </div>
+            <% data.errors.forEach(function(result){ %>
+                <div class="alert alert-danger" role="alert">
+                    <%= result.message %>
+                </div>
+            <% }); %>
+            <div class="card-body">
+                <form action="/admin/account-setting/edit" method="POST">
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input id="email" name="email" value="<%= data.adminEmail %>" type="email" class="form-control" placeholder="Enter Email">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <div class="input-group mb-3">
+                            <input id="password" name="password" value="" type="password" class="form-control" placeholder="Enter Password">
+                            <div class="input-group-append">
+                                <button onclick="toggleShowHidePassword();" class="btn btn-outline-secondary" type="button" id="btn-show-hide"><i class="bi bi-eye-slash" aria-hidden="true"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-dark">Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="space-30"></div>
+
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="">Frontend Settings</h3>
+            </div>
+            <div class="card-body">
+                <form action="/admin/frontend-setting/edit" method="POST">
+                    <div class="form-group">
+                        <label for="tx-site-title">Site Title:</label>
+                        <input id="tx-site-title" name="siteTitle" type="text" value="<%= data.setting.siteTitle %>" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tx-site-seo-title">Site SEO Title:</label>
+                        <input id="tx-site-seo-title" name="siteSEOTitle" type="text" value="<%= data.setting.siteSEOTitle %>" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tx-site-description">Site Description:</label>
+                        <input id="tx-site-description" name="siteDescription" type="text" value="<%= data.setting.siteDescription %>" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tx-site-seo-description">Site SEO Description:</label>
+                        <input id="tx-site-seo-description" name="siteSEODescription" type="text" value="<%= data.setting.siteSEODescription %>" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tx-admin-articles-per-page">Admin Articles Per Page:</label>
+                        <input id="tx-admin-articles-per-page" name="adminArticlesPerPage" type="range" value="<%= data.setting.adminArticlesPerPage %>" min="0" max="9" class="form-range">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tx-blog-articles-per-page">Blog Articles Per Page:</label>
+                        <input id="tx-blog-articles-per-page" name="blogArticlesPerPage" type="range" value="<%= data.setting.blogArticlesPerPage %>" min="0" max="9" class="form-range">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tx-blog-search-per-page">Blog Search Per Page:</label>
+                        <input id="tx-blog-search-per-page" name="blogSearchPerPage" type="range" value="<%= data.setting.blogSearchPerPage %>" min="0" max="9" class="form-range">
+                    </div>
+
+                    <div class="space-15"></div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-dark">Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

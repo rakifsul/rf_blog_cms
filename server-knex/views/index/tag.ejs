@@ -1,0 +1,44 @@
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="jumbotron jumbotron-lower">
+            <h1 class="display-4">
+                Tag: <%= data.tag; %>
+            </h1>
+            <% data.allUniqueTags.forEach(function(item){ %>
+                <a class="badge bg-primary" href="/tags/<%= item %>">
+                    <%= item %>
+                </a>
+            <% }) %>
+            <hr>
+            <p>
+                <a class="btn btn-warning float-right ml-2" href="/auth/register">Register</a>
+                <a class="btn btn-danger float-right" href="/auth/login">Login</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <% data.results.forEach(function(result){ %>
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <div class="card" style="width: 18rem;">
+                <% if(result.thumbnail) { %>
+                    <img src="<%= result.thumbnail %>" class="card-img-top" alt="...">
+                <% } %>
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <%= result.title %>
+                    </h5>
+                    <div class="mb-1 text-muted">
+                        <%= result.name %> - <%= data.moment().format('DD MMMM, YYYY', result.createdAt); %>
+                    </div>
+                    <p class="card-text">
+                        <%- generateExcerpt(result.content); %>
+                    </p>
+                    </p>
+                    <a href="/<%= result.slug %>" class="btn btn-secondary">Read More</a>
+                </div>
+            </div>
+        </div>
+    <% }); %>
+</div>

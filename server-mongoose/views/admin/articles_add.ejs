@@ -1,0 +1,84 @@
+<div class="row mt-2">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <h3>Tambah Article</h3>
+    </div>
+</div>
+
+
+<form action="/admin/articles/add" method="post" onsubmit="return parseTagsInput('txa-tags', 'txa-div-tags')" id="form-article">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="form-group">
+                <label for="tx-title" class="col-form-label"><span class="text-danger">*</span>Title</label>
+                <input type="text" name="title" value="" class="form-control" id="tx-title" />
+            </div>
+
+            <div class="form-group">
+                <label for="quill-content" class="col-form-label">Content</label>
+                <textarea name="content" id="txa-content" class="form-control" cols="30" rows="10" style="display: none;"></textarea>
+                <div id="quill-content">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="finput-thumbnail" class="col-form-label">Thumbnail</label>
+                <input type="file" class="form-control-file" id="finput-thumbnail" />
+                <input type="hidden" id="hidden-thumbnail-base64" name="thumbnail" />
+                <div class="mt-5"></div>
+                <div class="card">
+                    <img id="img-thumbnail" class="img-responsive" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="tx-slug" class="col-form-label">Slug</label>
+                <input type="text" name="slug" value="" class="form-control" id="tx-slug" />
+            </div>
+
+            <div class="form-group">
+                <label for="tx-seo-title" class="col-form-label">SEO
+                    Title</label>
+                <input type="text" name="seoTitle" value="" class="form-control" id="tx-seo-title" />
+            </div>
+
+            <div class="form-group">
+                <label for="tx-seo-description" class="col-form-label">SEO Description</label>
+                <input type="text" name="seoDescription" value="" class="form-control" id="tx-seo-description" />
+            </div>
+
+            <div class="form-group">
+                <label for="tx-tags" class="col-form-label">Tags (type and press enter to add a tag. click on badge to remove.)</label>
+                <input type="text" value="" class="form-control mb-2" id="tx-tags" />
+
+                <textarea name="tags" style="display:none" id="txa-tags"></textarea>
+                <div id="txa-div-tags">
+                </div>
+            </div>
+
+            <div class="mt-3"></div>
+
+            <button type="submit" class="btn btn-dark col-12">Save</button>
+        </div>
+    </div>
+</form>
+
+<div class="modal fade" id="modal-get-image" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">DblClick to Select Image</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="my-modal-body" class="row">
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>

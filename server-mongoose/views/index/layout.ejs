@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <% if(data.result) { %>
+        <meta name="description" content="<%= data.result.seoDescription %>">
+    <% } else { %>
+        <meta name="description" content="<%= data.setting.siteSEODescription %>">
+    <% } %>
+    <meta name="author" content="">
+
+    <link rel="shortcut icon" type="image/png" href="/public/favicon.png" />
+
+    <title>
+        <% if(data.result) { %>
+            <%= data.result.seoTitle %> - <%= data.setting.siteSEOTitle %>
+        <% } else { %>
+            <%= data.setting.siteSEOTitle %>
+        <% } %>
+    </title>
+
+    <link rel="stylesheet" href="/public/vendor/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/public/vendor/bootstrap-icons/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="/public/vendor/bootstrap4-tagsinput/tagsinput.css">
+    <link rel='stylesheet' href="/public/css/bootstrap-mod.css" />
+</head>
+
+<body>
+    <div id="app" class="container">
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="/">
+                <%= data.setting.siteTitle %>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto">
+                </ul>
+                <% if (data.menus) { %>
+                    <% if (data.menus.structure) { %>
+                        <% if (data.menus.structure.length) { %>
+                            <% if (data.menus.structure[0].length) { %>
+                                <ul id="nav-items" class="navbar-nav">
+                            <% } %>
+                            <% data.menus.structure[0].forEach(function(item){ %>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="<%= item.url %>">
+                                        <%= item.name %>
+                                    </a>
+                                </li>
+                            <% }) %>
+                            <% if (data.menus.structure[0].length) { %>
+                                </ul>
+                            <% } %>
+                        <% } %>
+                    <% } %>
+                <% } %>
+            </div>
+        </nav>
+
+        <% include ../helper %>
+        <%- include("../" + child, {data: data}); %>
+
+        <footer class="footer">
+            <nav class="navbar fixed-bottom navbar-expand-lg navbar-dark bg-dark">
+                <a class="navbar-brand" href="javascript:void(0);">
+                    <%= data.currentURL %>
+                </a>
+            </nav>
+        </footer>
+    </div>
+    <script src="/public/vendor/jquery/jquery.min.js"></script>
+    <script src="/public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/public/vendor/bootstrap4-tagsinput/tagsinput.js"></script>
+    <script src="/public/vendor/chart.js/Chart.bundle.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            console.log(location.pathname)
+            $(`a[href*='${location.pathname}']`).addClass("active");
+        });
+    </script>
+    <%- include("../" + clientScript, {data: data}); %>
+</body>
+
+</html>

@@ -1,0 +1,71 @@
+<script>
+    var configCPUUsagePie = {
+        type: 'pie',
+        data: {
+            labels: [
+                "CPU Used",
+                "CPU Free"
+            ],
+            datasets: [{
+                data: [100, 50],
+                backgroundColor: [
+                    "#FF6384",
+                    "#36A2EB"
+                ],
+                hoverBackgroundColor: [
+                    "#FF6384",
+                    "#36A2EB"
+                ]
+            }]
+        }
+    };
+
+    var cpuUsageChartPie = new Chart(
+        document.getElementById("cpuUsageChartPie").getContext("2d"),
+        configCPUUsagePie
+    );
+
+    setInterval(function () {
+        $.get("/admin/cpu-usage", function (data) {
+            configCPUUsagePie.data.datasets[0].data[0] = data.value;
+            configCPUUsagePie.data.datasets[0].data[1] = (100 - data.value);
+            cpuUsageChartPie.update();
+        });
+    }, 1000);
+
+    var configMemoryUsagePie = {
+        type: 'pie',
+        data: {
+            labels: [
+                "Memory Used",
+                "Memory Free"
+            ],
+            datasets: [{
+                data: [100, 50],
+                backgroundColor: [
+                    "#FF6384",
+                    "#36A2EB"
+                ],
+                hoverBackgroundColor: [
+                    "#FF6384",
+                    "#36A2EB"
+                ]
+            }]
+        }
+    };
+
+    var memoryUsageChartPie = new Chart(
+        document.getElementById("memoryUsageChartPie").getContext("2d"),
+        configMemoryUsagePie
+    );
+
+    setInterval(function () {
+        let self = this;
+        $.get("/admin/memory-usage", function (data) {
+            configMemoryUsagePie.data.datasets[0].data[0] = data.value;
+            configMemoryUsagePie.data.datasets[0].data[1] = 100 - data.value;
+            memoryUsageChartPie.update();
+        });
+
+    }, 1000);
+</script>

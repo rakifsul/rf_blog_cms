@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link rel="shortcut icon" type="image/png" href="/public/favicon.png" />
+
+    <title>
+        <%= data.setting.siteTitle %>
+    </title>
+
+    <link rel="stylesheet" href="/public/vendor/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/public/vendor/icons/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="/public/vendor/quill/quill.snow.css">
+    <link rel='stylesheet' href="/public/css/bootstrap-mod.css" />
+</head>
+
+<body>
+    <div id="sidebar" class="sidebar bg-dark">
+        <div class="sidebar-brand">
+            <img class="img-fluid sidebar-brand-img mx-auto d-block" src="/public/img/icon.png" alt="icon" width="200" height="200">
+            <h3 class="text-white text-center">SHBNDBlogCMS</h3>
+        </div>
+        <hr class="bg-light">
+        <ul class="sidebar-ul">
+            <li class="sidebar-li">
+                <a class="btn btn-outline-light w-100 btn-mobile" href="/admin"><i class="bi bi-speedometer float-left"></i><span>
+                        Dashboard</span></a>
+            </li>
+            <li class="sidebar-li">
+                <a class="btn btn-outline-light w-100 btn-mobile" href="/admin/articles"><i class="bi bi-journal-richtext float-left"></i> <span>
+                        Articles</span></a>
+            </li>
+            <li class="sidebar-li">
+                <a class="btn btn-outline-light w-100 btn-mobile" href="/admin/files"><i class="bi bi-upload float-left"></i>
+                    <span>
+                        Files</span></a>
+            </li>
+            <li class="sidebar-li">
+                <a class="btn btn-outline-light w-100 btn-mobile" href="/admin/menus"><i class="bi bi-menu-button-fill float-left"></i>
+                    <span>
+                        Menus</span></a>
+            </li>
+            <li class="sidebar-li">
+                <a class="btn btn-outline-light w-100 btn-mobile" href="/admin/settings"><i class="bi bi-gear-fill float-left"></i>
+                    <span>
+                        Settings</span></a>
+            </li>
+        </ul>
+        <hr class="bg-light">
+        <!-- <ul class="sidebar-ul">
+            <li class="sidebar-li">
+                <a class="btn btn-outline-light w-100 btn-mobile" href="javascript:void(0);"><i class="bi bi-plug-fill float-left"></i>
+                    <span>Plugins</span></a>
+            </li>
+        </ul> -->
+    </div>
+
+    <div class="main">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto">
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/admin">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/" target="_blank">Preview</a>
+                    </li>
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Profile
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/admin/settings">Edit Profile</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/auth/logout"><i class="bi bi-box-arrow-right float-left"></i>Logout</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container-fluid">
+            <% include ../helper %>
+
+            <%- include("../" + child, {data: data}); %>
+        </div>
+    </div>
+
+    <script src="/public/vendor/jquery/jquery.min.js"></script>
+    <script src="/public/vendor/jquery-sortable/jquery-sortable.js"></script>
+    <script src="/public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/public/vendor/chart.js/Chart.bundle.min.js"></script>
+    <script src="/public/vendor/quill/quill.min.js"></script>
+    <script src="/public/js/admin.js"></script>
+    <%- include("../" + clientScript, {data: data}); %>
+</body>
+
+</html>
