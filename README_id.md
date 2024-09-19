@@ -70,3 +70,7 @@ Default admin login:
 username: admin@example.com
 password: admin
 ```
+
+## Freelance Worker Link
+
+- https://projects.co.id/public/browse_users/view/99bc11/rakifsul
