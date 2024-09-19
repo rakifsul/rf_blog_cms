@@ -1,2 +1,74 @@
-# rf_blog_cms
-Blog CMS App Written in Node JS
+# rf_blog_cms - Node.js Blogging CMS
+
+[README dengan Bahasa Indonesia Klik di Sini](https://github.com/rakifsul/rf_blog_cms/blob/main/README_id.md)
+
+## What is This Software?
+
+rf_blog_cms is a Node.js Blogging CMS.
+
+## How It Works
+
+This application works like a typical CRUD, but there are some additional features such as a menu designer and a tags editor.
+
+## How to Try This Code
+
+### How to Try server-mongoose
+
+To try the server-mongoose code, navigate to the server-mongoose folder via the command line.
+
+Next, create a .env file inside the folder.
+
+Then, configure the database settings and other configurations in the .env file based on .env-example.
+
+The server-mongoose code requires MongoDB, so make sure you have installed it and created the database as per the previous configuration.
+
+Next, run:
+
+```
+npm install
+```
+
+Then, run:
+
+```
+npm run dev
+```
+
+Finally, open your browser to the address listed in the BASE_URL in the .env file.
+
+### How to Try server-knex
+
+To try the server-knex code, create a .env file inside the folder.
+
+Then, fill in the .env file based on .env-example. Here you can change the port, environment, and database details.
+
+The server-knex code requires MySQL, so make sure you have installed it and created the database according to the configuration.
+
+Now, make sure you are inside the server-knex folder.
+
+Next, run:
+
+```
+npm install
+```
+
+Then, run:
+
+```
+npm run db:refresh
+```
+
+Then, run:
+
+```
+npm run dev
+```
+
+Finally, open your browser to the address listed in the BASE_URL in the .env file.
+
+Default admin login:
+
+```
+username: admin@example.com
+password: admin
+```
