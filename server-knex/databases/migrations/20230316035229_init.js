@@ -82,13 +82,13 @@ exports.up = function (knex) {
         .then(() => {
             return knex("settings").insert([
                 {
-                    siteTitle: "SHBNDEJSBlogCMS",
+                    siteTitle: "RF Blog CMS",
                     siteSEOTitle:
-                        "SHBNDEJSBlogCMS - Blog CMS, Dibuat Menggunakan Node.js",
+                        "RF Blog CMS - Blog CMS, Dibuat Menggunakan Node.js",
                     siteDescription:
-                        "SHBNDEJSBlogCMS adalah aplikasi web untuk membuat blog...",
+                        "RF Blog CMS adalah aplikasi web untuk membuat blog...",
                     siteSEODescription:
-                        "SHBNDEJSBlogCMS adalah aplikasi web untuk membuat blog...",
+                        "RF Blog CMS adalah aplikasi web untuk membuat blog...",
                     adminArticlesPerPage: 4,
                     blogArticlesPerPage: 6,
                     blogSearchPerPage: 6,

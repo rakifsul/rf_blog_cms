@@ -123,10 +123,10 @@ mongoose.connection.on("connected", async function () {
     if (setting.length == 0) {
         console.log("Config belum ada, membuat config default...")
         let newSetting = new Setting({
-            siteTitle: "SHBNDBlogCMS",
-            siteSEOTitle: "SHBNDBlogCMS - Blog CMS, Dibuat Menggunakan Node.js",
-            siteDescription: "SHBNDBlogCMS adalah aplikasi web untuk membuat blog...",
-            siteSEODescription: "SHBNDBlogCMS adalah aplikasi web untuk membuat blog...",
+            siteTitle: "RF Blog CMS",
+            siteSEOTitle: "RF Blog CMS - Blog CMS, Dibuat Menggunakan Node.js",
+            siteDescription: "RF Blog CMS adalah aplikasi web untuk membuat blog...",
+            siteSEODescription: "RF Blog CMS adalah aplikasi web untuk membuat blog...",
             adminArticlesPerPage: 4,
             blogArticlesPerPage: 6,
             blogSearchPerPage: 6
